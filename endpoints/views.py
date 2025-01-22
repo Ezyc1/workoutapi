@@ -38,6 +38,7 @@ class SendLoginCodeView(APIView):
         user.profile.save()
         
         return Response({'message': 'Login code sent', 'code': code}, status=status.HTTP_200_OK)
+
     
 class VerifyLoginCodeView(APIView):
     def post(self, request):

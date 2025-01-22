@@ -97,6 +97,11 @@ CORS_ORIGIN_WHITE_LIST = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
 ]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173', 
+    'http://127.0.0.1:5173'
+]
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
