@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Workout API</title>
+        <meta charset="UTF-8">
+        <link href="info.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <h1>Workout API</h1>
+        <p>Följande endpoints är definierade:</p>
+        <table>
+            <tr>
+                <th>Endpoint</th>
+                <th>Metod</th>
+                <th>Beskrivning</th>
+                <th>Inparametrar</th>
+                <th>Svar</th>
+            </tr>
+            
+            <!-- Activity Endpoints -->
+            <tr>
+                <td>/activity/</td>
+                <td>GET</td>
+                <td>Hämtar alla aktiviteter</td>
+                <td> </td>
+                <td>
+                    <span class="responseStatus">Status: 200</span>
+                    <ul>
+                        <li>activities [
+                            <ul>
+                                <li>id (int)</li>
+                                <li>name (text)</li>
+                                <li>has_time (boolean)</li>
+                                <li>has_distance (boolean)</li>
+                                <li>distance_unit (text, "m"/"km")</li>
+                            </ul>
+                        ]</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>/activity/{id}</td>
+                <td>GET</td>
+                <td>Hämtar en enskild aktivitet</td>
+                <td>GET-data:
+                    <ul>
+                        <li>id (int)</li>
+                    </ul>
+                </td>
+                <td>
+                    <span class="responseStatus">Status: 200</span>
+                    <ul>
+                        <li>id (int)</li>
+                        <li>name (text)</li>
+                        <li>has_time (boolean)</li>
+                        <li>has_distance (boolean)</li>
+                        <li>distance_unit (text)</li>
+                    </ul>
+                    <span class="responseStatus">Status: 400</span>
+                    <ul>
+                        <li>error (text)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>/activity/</td>
+                <td>POST</td>
+                <td>Sparar en ny aktivitet</td>
+                <td>POST-data:
+                    <ul>
+                        <li>name (text)</li>
+                        <li>has_time (boolean)</li>
+                        <li>has_distance (boolean)</li>
+                        <li>distance_unit (text, "m"/"km")</li>
+                    </ul>
+                </td>
+                <td>
+                    <span class="responseStatus">Status: 201</span>
+                    <ul>
+                        <li>id (int)</li>
+                        <li>message (text)</li>
+                    </ul>
+                    <span class="responseStatus">Status: 400</span>
+                    <ul>
+                        <li>error (text)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>/activity/{id}</td>
+                <td>PUT</td>
+                <td>Redigerar en befintlig aktivitet</td>
+                <td>PUT-data:
+                    <ul>
+                        <li>id (int)</li>
+                        <li>name (text)</li>
+                        <li>has_time (boolean)</li>
+                        <li>has_distance (boolean)</li>
+                        <li>distance_unit (text)</li>
+                    </ul>
+                </td>
+                <td>
+                    <span class="responseStatus">Status: 200</span>
+                    <ul>
+                        <li>result (boolean)</li>
+                        <li>message (text)</li>
+                    </ul>
+                    <span class="responseStatus">Status: 400</span>
+                    <ul>
+                        <li>error (text)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>/activity/{id}</td>
+                <td>DELETE</td>
+                <td>Raderar en aktivitet</td>
+                <td>DELETE-data:
+                    <ul>
+                        <li>id (int)</li>
+                    </ul>
+                </td>
+                <td>
+                    <span class="responseStatus">Status: 204</span>
+                    <span class="responseStatus">Status: 400</span>
+                    <ul>
+                        <li>error (text)</li>
+                    </ul>
+                </td>
+            </tr>
+
+            <!-- Workout Endpoints -->
+            <tr>
+                <td>/workout/</td>
+                <td>GET</td>
+                <td>Hämtar alla workouts</td>
+                <td> </td>
+                <td>
+                    <span class="responseStatus">Status: 200</span>
+                    <ul>
+                        <li>workouts [
+                            <ul>
+                                <li>id (int)</li>
+                                <li>activity_id (int)</li>
+                                <li>date (date)</li>
+                                <li>time (duration)</li>
+                                <li>distance (decimal)</li>
+                                <li>description (text)</li>
+                                <li>rpe (int)</li>
+                            </ul>
+                        ]</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>/workout/{id}</td>
+                <td>GET</td>
+                <td>Hämtar en enskild workout</td>
+                <td>GET-data:
+                    <ul>
+                        <li>id (int)</li>
+                    </ul>
+                </td>
+                <td>
+                    <span class="responseStatus">Status: 200</span>
+                    <ul>
+                        <li>id (int)</li>
+                        <li>activity_id (int)</li>
+                        <li>date (date)</li>
+                        <li>time (duration)</li>
+                        <li>distance (decimal)</li>
+                        <li>description (text)</li>
+                        <li>rpe (int)</li>
+                    </ul>
+                    <span class="responseStatus">Status: 400</span>
+                    <ul>
+                        <li>error (text)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>/workout/</td>
+                <td>POST</td>
+                <td>Sparar en ny workout</td>
+                <td>POST-data:
+                    <ul>
+                        <li>activity_id (int)</li>
+                        <li>date (date)</li>
+                        <li>time (duration)</li>
+                        <li>distance (decimal)</li>
+                        <li>description (text)</li>
+                        <li>rpe (int)</li>
+                    </ul>
+                </td>
+                <td>
+                    <span class="responseStatus">Status: 201</span>
+                    <ul>
+                        <li>id (int)</li>
+                        <li>message (text)</li>
+                    </ul>
+                    <span class="responseStatus">Status: 400</span>
+                    <ul>
+                        <li>error (text)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>/workout/{id}</td>
+                <td>PUT</td>
+                <td>Redigerar en befintlig workout</td>
+                <td>PUT-data:
+                    <ul>
+                        <li>id (int)</li>
+                        <li>activity_id (int)</li>
+                        <li>date (date)</li>
+                        <li>time (duration)</li>
+                        <li>distance (decimal)</li>
+                        <li>description (text)</li>
+                        <li>rpe (int)</li>
+                    </ul>
+                </td>
+                <td>
+                    <span class="responseStatus">Status: 200</span>
+                    <ul>
+                        <li>result (boolean)</li>
+                        <li>message (text)</li>
+                    </ul>
+                    <span class="responseStatus">Status: 400</span>
+                    <ul>
+                        <li>error (text)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>/workout/{id}</td>
+                <td>DELETE</td>
+                <td>Raderar en workout</td>
+                <td>DELETE-data:
+                    <ul>
+                        <li>id (int)</li>
+                    </ul>
+                </td>
+                <td>
+                    <span class="responseStatus">Status: 204</span>
+                    <span class="responseStatus">Status: 400</span>
+                    <ul>
+                        <li>error (text)</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        <p>Saknas rätt inparametrar eller om parametrarna är av fel datatyp returneras ett JSON-objekt med en felkod (400 Bad request).</p>
+    </body>
+</html>

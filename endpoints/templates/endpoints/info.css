@@ -1,0 +1,53 @@
+html {
+    font-family: Verdana;
+    color: gray;
+}
+.noEndpoint {
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+}
+.responseStatus {
+    font-family: "Times New Roman";
+    font-weight: bold;
+    font-size: 14px;
+    color: black;
+}
+table {
+    margin: 10px;
+    border-collapse: collapse;
+    border: 4px double navy;
+    font-size: 12px;
+}
+tr:nth-child(odd) {
+    background-color: white;
+}
+tr:nth-child(even) {
+    background-color: lightcyan;
+}
+th {
+    border-bottom: solid 2px navy;
+    text-align: left;
+    padding: 3px;
+    border-left: solid 1px gray;
+}
+td {
+    vertical-align: top;
+    padding: 3px;
+    border-left: solid 1px gray;
+    padding-bottom: 1em;
+}
+td:first-child {
+    white-space: nowrap;
+}
+td ul {
+    margin: 0;
+    padding-left: 1.5em;
+    list-style-type: "- " ;
+}
+td ul li {
+    margin: 2px;
+}
+.noDash{
+    list-style-type: "";
+}
