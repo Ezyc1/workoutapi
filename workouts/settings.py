@@ -17,18 +17,16 @@ from corsheaders.defaults import default_headers
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-eanzmvi-faih68c$u5j3am9zk**lyn4m2zy)kh^)$ie8fta5wp'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-eanzmvi-faih68c$u5j3am9zk**lyn4m2zy)kh^)$ie8fta5wp')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['workoutapi-red.vercel.app', '.vercel.app']
 
 # Application definition
 
@@ -53,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'workouts.urls'
@@ -76,7 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'workouts.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -91,16 +87,14 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
 }
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://workoutapi-red.vercel.app",
 ]
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -113,8 +107,9 @@ CORS_ALLOW_METHODS = [
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'Authorization',
 ]
+
 CSRF_TRUSTED_ORIGINS = [
-    "https://workoutapi-red.vercel.app/",
+    "https://workoutapi-red.vercel.app",
 ]
 
 # Password validation
@@ -135,7 +130,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -147,11 +141,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -161,8 +155,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Email settings
 EMAIL_BACKEND = 'django_mailjet.backends.MailjetBackend'
 EMAIL_HOST = 'in-v3.mailjet.com'
-MAILJET_API_KEY = '0edcc60c89aac96e4fd028595e4aed4d'
-MAILJET_API_SECRET = '7d243c72c395bb12e048f341eb4049fb'
+MAILJET_API_KEY = os.getenv('MAILJET_API_KEY', '0edcc60c89aac96e4fd028595e4aed4d')
+MAILJET_API_SECRET = os.getenv('MAILJET_API_SECRET', '7d243c72c395bb12e048f341eb4049fb')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
