@@ -113,7 +113,9 @@ CORS_ALLOW_METHODS = [
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'Authorization',
 ]
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://workoutapi-red.vercel.app/",
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
