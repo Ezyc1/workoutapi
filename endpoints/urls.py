@@ -10,10 +10,7 @@ router.register(r'activities', ActivityViewSet, basename='activity')
 
 urlpatterns = [
     path('', include(router.urls)),
-
-    #path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('refresh/', CustomRefreshView.as_view(), name='token_refresh'),
-
     path('send-login-code/', SendLoginCodeView.as_view(), name='send_login_code'),
     path('verify-login-code/', VerifyLoginCodeView.as_view(), name='verify_login_code'),
 ]
