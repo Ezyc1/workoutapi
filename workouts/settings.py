@@ -13,21 +13,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from corsheaders.defaults import default_headers
-from pathlib import Path
-
-# Automatically detect the base directory of your project
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-eanzmvi-faih68c$u5j3am9zk**lyn4m2zy)kh^)$ie8fta5wp')
-ALLOWED_HOSTS = ['*']
-
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-CSRF_TRUSTED_ORIGINS = ['https://workoutapi-red.vercel.app/']
-
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
